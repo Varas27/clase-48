@@ -1,0 +1,9 @@
+.chat-bg {
+    background: #E9ECEF;
+}
+
+.chat-messages {
+    height: 450px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase 48 {{data.name}} - Varas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/styles.css" type="text/css">
+    <link rel="stylesheet" href="/stylesheets/product_details/styles.css" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    {{> bar}}
+    <section>
+        <div class="container col-12 col-lg-10 col-xl-9">
+            {{#if data}}
+            <div class="breadcrumbs row">
+                <a href="/products">Productos</a>
+                <span class="mx-1">></span>
+                <a href="/products/cat/{{data.category}}">{{data.category}}</a>
+                <span class="mx-1">></span>
+                <p class="mb-0">{{data.name}}</p>
+            </div>
+            <div class="row bg-white" style='border-radius:10px'>
+                <div class="col-md-6 pl-md-0 pr-md-3 py-4 text-center">
+                    <img class="img-fluid" src="/products/{{data.thumbnail}}" alt="{{data.name}}" />
+                </div>
+                <div class="col-md-6 pl-md-0 pr-md-3 py-4">
+                    <h3 class="detail-title m-0">{{data.name}}</h3>
+                    <p class="detail-category my-3">{{data.category}}</p>
+                    <p class="detail-price my-3">${{data.price}}</p>
+                    <hr class="my-4" style='border-color:#EFEFEF' />
+                    <div>
+                        <h4 style='font-size: 1em; font-weight: 500'>DESCRIPCIÓN</h4>
+                        <p class="m-0">{{data.description}}</p>
+                    </div>
+                    <hr class="my-4" sstyle='border-color:#EFEFEF' />
+                    <div class="addToCart">
+                        <form class="form text-center" action="/cart" method="post" role="form" autocomplete="off">
+                            <button type="submit" class="btn w-100">
+                                <input id="id" name='id' type="hidden" value="{{data._id}}">
+                                <p class="mb-0 addToCartText">Agregar al carrito</p>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {{else}}
+            <div class="alert alert-warning mx-3 w-100 text-center" role="alert">
+                No se encontró ese producto. <a href="/products">Ver todos los productos</a>
+            </div>
+            {{/if}}
+        </div>
+    </section>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

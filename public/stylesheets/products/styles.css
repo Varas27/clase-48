@@ -1,0 +1,44 @@
+table {
+    border-bottom: 2px solid #dee2e6;
+}
+
+th,
+td {
+    padding: 0.5em !important;
+}
+
+th,
+.summary-title {
+    color: #4f4f4f;
+    font-weight: 600;
+    font-size: 0.9em;
+    text-align: center !important;
+}
+
+tbody tr td {
+    vertical-align: middle !important;
+}
+
+.tbody-cart tr:not(:first-of-type) {
+    border-top: 1.2em solid transparent !important;
+}
+
+.tbody-orders tr {
+    border-bottom: 2px solid #dee2e6;
+}
+
+td {
+    font-size: 0.85em;
+    text-align: center;
+}
+
+.product-details h3 {
+    font-size: 1em;
+}
+
+
+@media only screen and (max-width: 575px) {
+    table {
+        font-size: 0.9rem;
+    }
+}

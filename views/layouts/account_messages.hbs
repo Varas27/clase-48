@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase 48 - Varas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/styles.css" type="text/css">
+    <link rel="stylesheet" href="/stylesheets/chat/styles.css" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    {{> bar}}
+
+    <div class="chat-bg col-md-9 row mx-auto mb-4 px-3 py-4">
+        <h1 class="text-center w-100">Tu historial de mensajes</h1>
+        {{#if data}}
+        <div class="col-12">
+            <hr class="my-4 w-75" style="border-color: rgba(219, 219, 219, 0.918);">
+            <div class="chat-container col-12">
+                <div class="chat-window">
+                    <div class="chat-messages">
+                        {{#each data}}
+                        <div class="row ml-0 align-items-center mb-2">
+                            <div class="col-9 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+                                <p>
+                                    <span style="font-weight:bold;color:blue;">{{author.email}}</span>
+                                    <span style="color:brown;">{{time}}</span>
+                                    <span style="font-style:italic;color:green;">{{message}}</span>
+                                </p>
+                            </div>
+                            <div
+                                class='justify-content-center align-items-center col-3 col-sm-2 col-md-2 col-lg-2 col-xl-1'>
+                                {{#if author.avatar}}
+                                <img src="/avatars/{{author.avatar}}" class="img-fluid" alt='{{author.name}} avatar'>
+                                {{else}}
+                                <img src="/avatars/default_avatar.png" class="img-fluid" alt='{{author.name}} avatar'>
+                                {{/if}}
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <div class="alert alert-secondary mx-3 w-100 text-center" role="alert">
+            Aún no mandaste tu primer mensaje. <a href="/chat">Ir al chat</a>
+        </div>
+        {{/if}}
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"
+        integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase 48 Login - Varas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/styles.css" type="text/css">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <h1 class="text-center w-100 asd mt-4">Inicio de sesión</h1>
+    <div class="col-10 mx-auto">
+        <form class="form" action="/login" method="post" role="form">
+            <div class="form-group col-12 justify-content-center row mx-0">
+                <input id="email" name='email' placeholder="Email" class="form-control col-md-6" type="email" required>
+            </div>
+            <div class="form-group col-12 justify-content-center row mx-0">
+                <input id="password" name='password' placeholder="Password" class="form-control col-md-6" type="password" required>
+            </div>
+            <div class="form-group col-12 justify-content-center row mx-0">
+                <input class="btn btn-success my-3 col-sm-3" type="submit" value="Iniciar sesión">
+            </div>
+        </form>
+        <div class="row justify-content-center mx-0">
+            <a href="/signup" class="btn btn-primary col-sm-3" type="button">Ir a Registro</a>
+        </div>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

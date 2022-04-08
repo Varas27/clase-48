@@ -1,0 +1,32 @@
+h1 {
+    color:#363636;
+}
+
+.welcome {
+    background: #D4EDDA;
+    color:#2C6B45;
+}
+
+.welcome p {
+    font-size:2em;
+}
+
+.logout, .logout:hover, .logout:active {
+    background:#FEC10A !important;
+    color:#664c0c !important;
+    border: 0;
+}
+
+.logout:active, .logout:focus{
+    box-shadow: 0 0 0 0.2rem rgba(254, 193, 10, .5) !important;
+}
+
+.goodbye {
+    background:#CCE5FF;
+    color:#1B518E;
+    font-size:2em;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}

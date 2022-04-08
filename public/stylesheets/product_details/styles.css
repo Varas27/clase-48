@@ -1,0 +1,40 @@
+.detail-price {
+    font-size: 2em !important;
+    color:#33A68C;
+    font-weight: 600;
+}
+
+.detail-title {
+    font-size:1.3em !important;
+    font-weight: normal;
+    color:#212529;
+    text-transform: uppercase;
+}
+
+.detail-category {
+    font-size:1em !important;
+    font-weight: normal;
+    color:#212529;
+    text-transform: uppercase;
+}
+
+.breadcrumbs, .breadcrumbs a {
+    color:#9C9B9A;
+    font-size: 0.9rem;
+    text-transform: capitalize;
+}
+
+.addToCart {
+    background: red;
+    border-radius:2px;
+    background:#118d01;
+    transition: all 0.4s;
+}
+
+.addToCartText {
+    color:white
+}
+
+.addToCart:hover {
+    box-shadow: 0 0 5px 7px rgb(190, 250, 178);
+}

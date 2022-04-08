@@ -1,0 +1,42 @@
+<div class="container page-wrapper">
+    <div class="page-inner">
+        <div class="row">
+            {{#if data}}
+            {{#each data}}
+            <div class="el-wrapper">
+                <a href="/products/{{_id}}">
+                    <div class="box-up">
+                        <img class="img-fluid" src="/products/{{thumbnail}}" alt="{{name}}">
+                        <div class="img-info">
+                            <div class="info-inner">
+                                <span class="p-name py-1">{{name}}</span>
+                                <span class="p-company text-center mx-auto w-25">{{category}}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box-down">
+                        <div class="h-bg">
+                            <div class="h-bg-inner"></div>
+                        </div>
+                        <form class="form" action="/cart" method="post" role="form" autocomplete="off">
+                            <button type="submit" class="btn cart">
+                                <span class="price">${{price}}</span>
+                                <span class="add-to-cart">
+                                    <input id="id" name='id' type="hidden" value="{{_id}}">
+                                    <p class="mb-0 txt">Agregar al carrito</p>
+                                </span>
+                            </button>
+                        </form>
+                    </div>
+                </a>
+            </div>
+            {{/each}}
+            {{else}}
+            <div class="alert alert-warning mx-3 w-100 text-center" role="alert">
+                No se encontraron productos con esa categoría. <a href="/products">Ver todos los productos</a>
+            </div>
+            {{/if}}
+        </div>
+    </div>
+</div>

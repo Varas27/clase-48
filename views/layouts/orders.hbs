@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase 48 - Varas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/styles.css" type="text/css">
+    <link rel="stylesheet" href="/stylesheets/products/styles.css" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    {{> bar}}
+    <h1 class='text-center'>Tus órdenes</h1>
+    {{#if orders}}
+    <div class="col-md-9 row mx-auto mb-4 p-0">
+        <table class="table">
+            <thead class="table-borderless">
+                <tr>
+                    <th scope="col" class="col-1 text-left">Orden</th>
+                    <th scope="col" class="col-2">Productos</th>
+                    <th scope="col" class="col-2">Total</th>
+                    <th scope="col" class="col-2">Fecha</th>
+                    <th scope="col" class="col-2">Estado</th>
+                </tr>
+            </thead>
+            <tbody class="tbody-orders">
+                {{#each orders}}
+                <tr>
+                    <td data-th="Orden" class="col-1 text-left">
+                        <p class="m-0">#{{number}}</p>
+                    </td>
+                    <td data-th="Productos" class="col-3 text-left">
+                        <div class="row product-details justify-content-center align-items-center">
+                            <ul class="my-2 p-0">
+                                {{#each products}}
+                                <li class="m-0">{{name}} x{{quantity}}</li>
+                                {{/each}}
+                            </ul>
+                        </div>
+                    </td>
+                    <td data-th="Total" class="col-3">
+                        <p class="m-0">${{total}}</p>
+                    </td>
+                    <td data-th="Fecha" class="col-3">
+                        <p class="m-0">{{timestamp}}</p>
+                    </td>
+                    <td data-th="Estado" class="col-3">
+                        <p class="m-0">{{state}}</p>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+    {{else}}
+    <div class="alert alert-secondary mx-3 w-100 text-center" role="alert">
+        Aún no hiciste ninguna orden. <a href="/products">Ver todos los productos</a>
+    </div>
+    {{/if}}
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"
+        integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+
+</html>

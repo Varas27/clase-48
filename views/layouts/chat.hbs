@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase 48 - Varas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/styles.css" type="text/css">
+    <link rel="stylesheet" href="/stylesheets/chat/styles.css" type="text/css">
+    <script src='/socket.io/socket.io.min.js'></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    {{> bar}}
+
+    <div class="chat-bg col-md-9 row mx-auto mb-4 px-3 py-4">
+        <h1 class="text-center w-100">Chat</h1>
+        <div class="col-12">
+            <hr class="my-4 w-75" style="border-color: rgba(219, 219, 219, 0.918);">
+            <div class="chat-container col-12">
+                <div class="chat-window">
+                    <div class="chat-messages"></div>
+                    <div class="actions mb-1"></div>
+                </div>
+                <div class='row col-12 col-sm-9 col-md-6 m-0 p-0'>
+                    <input class="form-control col" type="text" id="message" placeholder="Ingresa un mensaje...">
+                    <button id="send-message" class="btn btn-primary ml-3" type="button">Enviar</button>
+                </div>
+                <div class="row mt-5">
+                    <a href="/chat/history" class="btn btn-primary ml-auto" style='color:white'>Ver tu historial
+                        de mensajes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const socket = io();
+        let percentage;
+        let message = document.getElementById('message');
+        let btn = document.getElementById('send-message');
+        let chatMessages = document.querySelector('.chat-messages');
+        let actions = document.querySelector('.actions');
+        btn.addEventListener('click', () => {
+            if (message.value.length) {
+                saveMessage('{{user.email}}', message.value, '{{user.name}}', '{{user.avatar}}');
+                message.value = '';
+            }
+        });
+
+        socket.on('server:chat-message', data => {
+            addMessage(data);
+        });
+
+        socket.on('server:chat-typing', data => {
+            if (data) {
+                actions.innerHTML = `<p style="color:#5C7289; font-style:italic;">${data} esta escribiendo...</p>`
+            } else {
+                actions.innerHTML = ''
+            }
+        });
+        let timeout;
+        message.addEventListener('keypress', () => {
+            socket.emit('chat:typing', '{{user.email}}');
+            clearTimeout(timeout);
+            timeout = setTimeout(() => { socket.emit("chat:typing", false) }, 2000);
+        });
+
+        socket.on('server:newmessage', addMessage);
+        socket.on('server:loadmessages', loadMessages);
+
+        // functions
+        function scrollToBottom() {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function saveMessage(email, message, name, avatar) {
+            socket.emit('chat:newmessage', { email, message, name, avatar });
+        };
+
+        function addMessage(data) {
+            actions.innerHTML = '';
+            chatMessages.innerHTML += `
+            <div class="row ml-0 align-items-center mb-2">
+                <div class="col-9 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+                    <p>
+                        <span style="font-weight:bold;color:blue;">${data.author.email}</span>
+                        <span style="color:brown;">${data.time}</span>
+                        <span style="font-style:italic;color:green;">${data.message}</span>
+                    </p>
+                </div>
+                <div class='justify-content-center align-items-center col-3 col-sm-2 col-md-2 col-lg-2 col-xl-1'>
+                ${data.author.avatar ?
+                    `<img src="/avatars/${data.author.avatar}" class="img-fluid" alt=${data.author.name}>`
+                    :
+                    `<img src="/avatars/default_avatar.png" class="img-fluid" alt=${data.author.name}>`
+                }
+                </div>
+            </div>`;
+            scrollToBottom();
+        };
+
+        function loadMessages(chatMessages) {
+            chatMessages.forEach((message) => addMessage(message));
+        };
+
+        io = io.connect();
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"
+        integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+
+</html>
